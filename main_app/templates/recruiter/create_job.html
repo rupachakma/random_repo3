@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container p-4">
+       <div class="shadow p-5">
+            <h2 class="text-center">Create a Jobpost</h2>
+            <hr>
+            <form method="post" action="">
+                {% csrf_token %}
+
+                <!-- First Column -->
+                <div class="row">
+                    <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.openings.label_tag }}
+                        {{ form.openings }}
+                    </div>
+                    <!-- Add more fields as needed -->
+                    <div class="mb-3">
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+                    </div>
+                    </div>
+
+                    <!-- Second Column -->
+                    <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form.category.label_tag }}
+                        {{ form.category }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.skill_set.label_tag }}
+                        {{ form.skill_set }}
+                    </div>
+                    <!-- Add more fields as needed -->
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Job</button>
+            </form>
+       </div>
+    </div>
+{% endblock content %}

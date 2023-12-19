@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container p-5">
+    <div class="shadow mx-auto p-5 col-8">
+        <h2 class="alert alert-success text-center">Register Here</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+             {{form.as_p}}
+             <button type="submit" class="btn btn-success mt-2"><i class="ri-login-box-line"></i>Register</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
