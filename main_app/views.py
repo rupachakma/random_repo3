@@ -39,21 +39,7 @@ def loginpage(request):
 
 @login_required
 def profile_page(request):  
-        # myuser = request.user
-        # if myuser.user_type == 'Recruiter':
-        #     profile_data = get_object_or_404(Recruiter_Profile, myuser=myuser)
-        #     template_name = 'recruiter/profile.html'
-        # elif myuser.user_type == 'JobSeeker':
-        #     profile_data = get_object_or_404(Jobseeker_Profile, myuser=myuser)
-        #     template_name = 'jobseeker/profile.html'
-        # else:
-        #     # Handle other user types or provide a default template
-        #     profile_data = None
-            
-
-        # return render(request, template_name, {'profile_data': profile_data})
-
-
+   
         user = request.user
         if user.is_authenticated:
             # print(f"User Type: {request.user.user_type}")
@@ -130,4 +116,18 @@ def job_list(request):
         job_seeker_profile = None
         matching_jobs = None
 
-    return render(request, 'recruiter/job_list.html', {'jobs': jobs, 'matching_jobs': matching_jobs, 'categories': categories, 'title_filter': title_filter, 'category_filter': category_filter})
+    return render(request, 'job_list.html', {'jobs': jobs, 'matching_jobs': matching_jobs, 'categories': categories, 'title_filter': title_filter, 'category_filter': category_filter})
+
+
+@login_required
+def job_details(request,pk):
+    job = get_object_or_404(JobPost, pk=pk)
+    return render(request,"job_detail.html",{'job':job})
+
+@login_required
+def job_delete(request,pk):
+    job = get_object_or_404(JobPost, pk=pk)
+    job.delete()
+    return redirect('joblist')
+
+

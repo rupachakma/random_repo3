@@ -10,10 +10,13 @@
                 <p class="badge bg-secondary ">{{ skill.name }}</p>
             {% endfor %}
         </div>
-        {% if user.is_authenticated and user.user_type == 'JobSeeker' %}
+        {% if user.is_authenticated and user.user_type == 'Jobseeker' %}
             <a href="" class="btn btn-primary" >Apply for the post</a>
         {% endif %}
         <!-- Add more details as needed -->
-        <a href="{% url 'jobs' %}" class="btn btn-secondary">Back to Jobs</a>
+        <a href="{% url 'joblist' %}" class="btn btn-secondary">Back to Jobs</a>
+        {% if user.is_authenticated and user.user_type == 'Recruiter' %}
+        <a href="{% url 'delete' pk=job.pk %}" class="btn btn-danger">Delete</a>
+        {% endif %}
     </div>
 {% endblock %}
